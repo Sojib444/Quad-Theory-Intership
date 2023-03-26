@@ -36,6 +36,10 @@ namespace Internship.Infrastructure.Muodule
 				.As<IStudentTableService>()
 				.InstancePerLifetimeScope();
 
+			builder.RegisterType<ApplicationUntofWork>()
+			.As<IApplicationUnitofWork>()
+			.InstancePerLifetimeScope();
+
 			builder.RegisterType<DStudentTable>()
 				.AsSelf()
 				.InstancePerLifetimeScope();

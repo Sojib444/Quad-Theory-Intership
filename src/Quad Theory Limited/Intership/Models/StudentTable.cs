@@ -38,17 +38,13 @@ namespace Intership.Models
 		[Required]
 		public int ClassId { get; set; }
 
-		public void AddStudent(StudentTable studentTable)
+		public async Task AddStudent(StudentTable studentTable)
 		{
 			DStudentTable dStudentTable = new DStudentTable();
 
-			_mapper.Map<DStudentTable>(dStudentTable);
-			//dStudentTable.Name = studentTable.Name;
-			//dStudentTable.Gender = studentTable.Gender;
-			//dStudentTable.ClassId = studentTable.ClassId;
-			//dStudentTable.DateOfBirth = studentTable.DateOfBirth;
+			var result=_mapper.Map<DStudentTable>(studentTable);
 
-			_studentTableService.AddStudent(dStudentTable);
+			await _studentTableService.AddStudent(result);
 		}
 	}
 }

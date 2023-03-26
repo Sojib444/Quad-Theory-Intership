@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Intership.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230325150526_first")]
-    partial class first
+    [Migration("20230326113812_First")]
+    partial class First
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,16 +56,21 @@ namespace Intership.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("ClassIdID")
+                    b.Property<int?>("ClassId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
                         .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DOB")
+                    b.Property<DateTime?>("DateOfBirth")
                         .IsRequired()
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Modificationdate")
                         .IsRequired()
@@ -77,20 +82,20 @@ namespace Intership.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassIdID");
+                    b.HasIndex("ClassId");
 
                     b.ToTable("studentTables");
                 });
 
             modelBuilder.Entity("Internship.Infrastructure.Entities.StudentTable", b =>
                 {
-                    b.HasOne("Internship.Infrastructure.Entities.ClassTable", "ClassId")
+                    b.HasOne("Internship.Infrastructure.Entities.ClassTable", "ClassTable")
                         .WithMany("Students")
-                        .HasForeignKey("ClassIdID")
+                        .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ClassId");
+                    b.Navigation("ClassTable");
                 });
 
             modelBuilder.Entity("Internship.Infrastructure.Entities.ClassTable", b =>

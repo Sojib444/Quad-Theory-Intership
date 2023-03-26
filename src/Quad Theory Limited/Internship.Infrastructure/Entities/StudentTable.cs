@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Internship.Infrastructure.Entities
 {
@@ -10,12 +11,14 @@ namespace Internship.Infrastructure.Entities
 		[Required]
 		public string? Gender { get; set; }
 		[Required]
-		public DateTime? DOB { get; set; }
+		public DateTime? DateOfBirth { get; set; }
         [Required]
         public DateTime? CreatedDate { get; set; }
         [Required]
         public DateTime? Modificationdate { get; set; }
         [Required]
-        public ClassTable? ClassId { get; set; }
+        [ForeignKey("ClassTable")]
+        public int? ClassId { get; set; }
+        public ClassTable? ClassTable { get; set; }
     }
 }

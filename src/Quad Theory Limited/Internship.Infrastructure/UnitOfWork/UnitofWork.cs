@@ -1,5 +1,4 @@
-﻿using Internship.Infrastructure.Repository.EntityRepoository;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Internship.Infrastructure.UnitOfWork
 {

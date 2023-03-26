@@ -22,4 +22,8 @@
     <ProjectReference Include="..\Internship.Infrastructure\Internship.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

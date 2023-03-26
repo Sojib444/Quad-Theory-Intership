@@ -1,10 +1,22 @@
-﻿namespace Internship.Infrastructure.Repository
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Internship.Infrastructure.Repository
 {
 	public class GenericRepository<T> : IGenericRepository<T> where T : class
 	{
-		public Task Add(T enity)
+		private DbContext _dbContext { get; set; }
+		private DbSet<T> _dbSet { get; set; }
+
+		public GenericRepository(DbContext dbContext)
 		{
-			throw new NotImplementedException();
+			_dbContext = dbContext;
+			_dbSet = _dbContext.Set<T>();
+
+		}
+
+		public async Task Add(T entity)
+		{
+			await _dbSet.AddAsync(entity);
 		}
 
 		public Task Delete(Guid Id)

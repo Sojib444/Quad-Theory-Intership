@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Intership.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class First : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,30 +32,31 @@ namespace Intership.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DOB = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Modificationdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ClassIdID = table.Column<int>(type: "int", nullable: false)
+                    ClassId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_studentTables", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_studentTables_classTables_ClassIdID",
-                        column: x => x.ClassIdID,
+                        name: "FK_studentTables_classTables_ClassId",
+                        column: x => x.ClassId,
                         principalTable: "classTables",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_studentTables_ClassIdID",
+                name: "IX_studentTables_ClassId",
                 table: "studentTables",
-                column: "ClassIdID");
-		}
+                column: "ClassId");
+        }
 
-		/// <inheritdoc />
-		protected override void Down(MigrationBuilder migrationBuilder)
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "studentTables");

@@ -30,13 +30,13 @@ namespace Intership.Controllers
 		}
 
 		[HttpPost,ValidateAntiForgeryToken]
-		public IActionResult AddStudent(StudentTable studentTable)
+		public async Task<IActionResult> AddStudent(StudentTable studentTable)
 		{
 			if (ModelState.IsValid)
 			{
 				studentTable.ResolveDependency(lifetimeScope);
 
-				studentTable.AddStudent(studentTable);
+				await studentTable.AddStudent(studentTable);
 			}
 			return View();
 		}
