@@ -9,7 +9,6 @@ namespace Intership.Controllers
 	{
 		private readonly ILogger<HomeController> _logger;
 		private readonly ILifetimeScope lifetimeScope;
-		private StudentTable student;
 
 		public HomeController(ILogger<HomeController> logger,ILifetimeScope lifetimeScope )
 		{
@@ -25,17 +24,19 @@ namespace Intership.Controllers
 		[HttpGet]
 		public IActionResult AddStudent()
 		{
-			return View();
+			var model = lifetimeScope.Resolve<StudentTable>();
+
+			return View(model);
 		}
 
-		[HttpPost]
+		[HttpPost,ValidateAntiForgeryToken]
 		public IActionResult AddStudent(StudentTable studentTable)
 		{
 			if (ModelState.IsValid)
 			{
-				StudentTable student = lifetimeScope.Resolve<StudentTable>();
+				studentTable.ResolveDependency(lifetimeScope);
 
-				student.AddStudent(studentTable);
+				studentTable.AddStudent(studentTable);
 			}
 			return View();
 		}

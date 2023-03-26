@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Internship.Infrastructure.DTO;
-using Internship.Infrastructure.Entities;
+using Intership.Models;
 
 namespace Intership.IntershipProfile
 {

@@ -3,6 +3,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Internship.Infrastructure.Context;
 using Internship.Infrastructure.Muodule;
+using Intership;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
 	containerBuilder.RegisterModule(new InfrastructureModule(connectionString, assemblyName));
+	containerBuilder.RegisterModule(new ProgramModule());
 });
 
 //Set DBContext

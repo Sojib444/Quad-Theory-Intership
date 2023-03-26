@@ -7,12 +7,14 @@ namespace Internship.Infrastructure.Entities
         public Guid Id { get; set; }
         [Required]
         public string? Name { get; set; }
+		[Required]
+		public string? Gender { get; set; }
+		[Required]
+		public DateTime? DOB { get; set; }
         [Required]
-        public DateOnly? DOB { get; set; }
+        public DateTime? CreatedDate { get; set; }
         [Required]
-        public DateOnly? CreatedDate { get; set; }
-        [Required]
-        public DateOnly? Modificationdate { get; set; }
+        public DateTime? Modificationdate { get; set; }
         [Required]
         public ClassTable? ClassId { get; set; }
     }

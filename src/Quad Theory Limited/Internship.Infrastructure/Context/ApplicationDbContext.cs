@@ -5,8 +5,8 @@ namespace Internship.Infrastructure.Context
 {
 	public class ApplicationDbContext : DbContext, IApplicationDbContxt
 	{
-		public string ConnetionString { get; set; }
-		public string Assembly { get; set; }
+		public string ConnetionString { get; }
+		public string Assembly { get; }
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options ,
 			string ConnetionString,string Assembly) : base(options)
 		{

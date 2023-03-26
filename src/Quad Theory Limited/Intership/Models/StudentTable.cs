@@ -8,44 +8,47 @@ namespace Intership.Models
 {
 	public class StudentTable:BaseModel
 	{
-		public IStudentTableService StudentTableService { get; }
-		public ILifetimeScope LifetimeScope { get; set; }
-		public IMapper Mapper { get; set; }
+		private IStudentTableService _studentTableService { get; set; }
+		private IMapper _mapper { get; set; }
 
-		public StudentTable()
+		public StudentTable():base()
 		{
 
 		}
 
-		public StudentTable(IStudentTableService studentTableService,
-			ILifetimeScope lifetimeScope,IMapper mapper)
+		public StudentTable(IStudentTableService studentTableService,IMapper mapper)
 		{
-			StudentTableService = studentTableService;
-			LifetimeScope = lifetimeScope;
-			LifetimeScope.Resolve<IStudentTableService>();
-			Mapper = mapper;
+			_studentTableService = studentTableService;
+			_mapper = mapper;
 		}
 
-		public void ResolveDependency(ILifetimeScope scope)
+		public override void ResolveDependency(ILifetimeScope scope)
 		{
 			base.ResolveDependency(scope);
-
+			_studentTableService = _scope.Resolve<IStudentTableService>();
+			_mapper = scope.Resolve<IMapper>();
 		}
 
 		[Required]
 		public string? Name { get; set; }
 		[Required]
-		public DateTime? DOB { get; set; }
+		public DateTime DateOfBirth { get; set; }
 		[Required]
 		public string? Gender { get; set; }
 		[Required]
 		public int ClassId { get; set; }
 
-		public void AddStudent(StudentTable studentTable )
+		public void AddStudent(StudentTable studentTable)
 		{
-			var dStudent = Mapper.Map<DStudentTable>(studentTable);
+			DStudentTable dStudentTable = new DStudentTable();
 
-			StudentTableService.AddStudent(dStudent);
+			_mapper.Map<DStudentTable>(dStudentTable);
+			//dStudentTable.Name = studentTable.Name;
+			//dStudentTable.Gender = studentTable.Gender;
+			//dStudentTable.ClassId = studentTable.ClassId;
+			//dStudentTable.DateOfBirth = studentTable.DateOfBirth;
+
+			_studentTableService.AddStudent(dStudentTable);
 		}
 	}
 }

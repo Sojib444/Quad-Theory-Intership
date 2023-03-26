@@ -1,18 +1,14 @@
 ﻿using Internship.Infrastructure.Entities;
-using System.ComponentModel.DataAnnotations;
 
 namespace Internship.Infrastructure.DTO
 {
 	public class DStudentTable
 	{
 		public string? Name { get; set; }
-		[Required]
-		public DateOnly? DOB { get; set; }
-		[Required]
-		public DateOnly? CreatedDate { get; set; }
-		[Required]
-		public DateOnly? Modificationdate { get; set; }
-		[Required]
-		public ClassTable? ClassId { get; set; }
+		public DateTime? DateOfBirth { get; set; }
+		public string? Gender { get; set; }
+		public DateTime? CreatedDate { get; set; }
+		public DateTime? Modificationdate { get; set; }
+		public int ClassId { get; set; }
 	}
 }

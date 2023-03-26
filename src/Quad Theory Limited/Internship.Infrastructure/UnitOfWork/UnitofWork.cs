@@ -5,18 +5,12 @@ namespace Internship.Infrastructure.UnitOfWork
 {
 	public class UnitofWork : IUnitofWork
 	{
-		public UnitofWork(DbContext applicationDb,
-			IClassTebleRepository classTebleRepository,
-			IStudentrepository studentrepository)
+		public UnitofWork(DbContext applicationDb)
 		{
 			ApplicationDb = applicationDb;
-			ClassTebleRepository = classTebleRepository;
-			Studentrepository = studentrepository;
 		}
 
-		public DbContext ApplicationDb { get; }
-		public IClassTebleRepository ClassTebleRepository { get; }
-		public IStudentrepository Studentrepository { get; }
+		public DbContext ApplicationDb { get; set; }
 
 		public void Dispose()
 		{
