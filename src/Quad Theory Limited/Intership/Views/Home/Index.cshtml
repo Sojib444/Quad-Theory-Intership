@@ -1,7 +1,57 @@
-﻿@{
+﻿
+@model List<DStudentTable>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
+@section Style{
+    <link rel="stylesheet" href="~/css/StudentList.css" />
+}
 <div>
-    <a href="/Home/AddStudent">Add new Student</a>
+    <a class="header" href="/Home/AddStudent">Add new Student</a>
 </div>
+
+<div class="StudentList">
+    <h3>List of Student</h3>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.ClassId</td>
+                            <td>@item.DateOfBirth</td>
+                            <td>@item.Gender</td>
+                            <td>
+                                <a asp-controller="Home" asp-action="UpdateStudent" asp-route-Id="@item.Id" class="anchor">Edit</a>
+                                <a asp-controller="Home" asp-action="Details" asp-route-Id="@item.Id" class="anchor">Details</a>
+                                <a asp-controller="Home" asp-action="Delete" asp-route-Id="@item.Id" class="anchor">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }else
+                {
+                    <tr>Data not Found</tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<p>For shortime I have used loop for geting all data.but it's very bad practice and harmfull for production.We need to <b>"serverside processing"</b></p>

@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using AutoMapper;
 using Internship.Infrastructure.DTO;
+using Internship.Infrastructure.Entities;
 using Internship.Infrastructure.Service;
 using System.ComponentModel.DataAnnotations;
 
@@ -29,6 +30,7 @@ namespace Intership.Models
 			_mapper = scope.Resolve<IMapper>();
 		}
 
+		public Guid? Id { get; set; }
 		[Required]
 		public string? Name { get; set; }
 		[Required]
@@ -40,11 +42,39 @@ namespace Intership.Models
 
 		public async Task AddStudent(StudentTable studentTable)
 		{
-			DStudentTable dStudentTable = new DStudentTable();
-
 			var result=_mapper.Map<DStudentTable>(studentTable);
 
 			await _studentTableService.AddStudent(result);
 		}
+
+        public async Task<List<DStudentTable>> GetAll()
+        {
+			var items = await _studentTableService.GetAllStudent();
+
+			return items;
+        }
+
+        public async Task<DStudentTable> GetStudent(Guid Id)
+        {
+            var items = await _studentTableService.GetStudent(Id);
+
+            return items;
+        }
+
+		public async Task Update(StudentTable student)
+		{
+			var result = _mapper.Map<DStudentTable>(student);
+			result.Id = (Guid)student.Id;
+
+			await _studentTableService.UpdateStudent(result);
+
+		}
+
+		public async Task Delete(Guid Id)
+		{
+			await _studentTableService.DeleteStudent(Id);
+		}
+
+
 	}
 }

@@ -1,0 +1,50 @@
+﻿@model DStudentTable
+@{
+    ViewData["Title"] = "UpdateStudent";
+}
+
+@section Style{
+	<link rel="stylesheet" href="~/css/StudentTable.css" />
+}
+
+<div class="StudentTable">
+	<form method="post" asp-controller="Home" asp-action="UpdateStudent">
+
+		<input  type="hidden" asp-for="Id"/>
+
+		<label for="Name">Name</label>
+		<input type="text" asp-for="Name">
+
+		<label for="DateOfBirth">Date of Birth</label>
+		<input asp-for="DateOfBirth" type="date" required>
+
+		<label1>
+			<input asp-for=Gender type="radio"  name="gender" value="male" required>
+			Male
+		</label1>
+
+		<label1>
+			<input asp-for=Gender type="radio" name="gender" value="female" required>
+			Female
+		</label1>
+
+		<label1>
+			<input asp-for=Gender type="radio" name="gender" value="other" required>
+			Other
+		</label1>
+
+		<div class="select">
+			<label2 for="class-select">Select Class:</label2>
+			<select asp-for=ClassId id="class-select" required>
+				<option value="1"> One</option>
+				<option value="2"> Two</option>
+				<option value="3"> Three</option>
+				<option value="4"> Four</option>
+				<option value="5"> Five</option>
+			</select>
+		</div>
+
+		<input type="submit" value="Create">
+	</form>
+</div>
+

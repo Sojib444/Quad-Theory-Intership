@@ -1,0 +1,24 @@
+﻿
+@model DStudentTable
+@{
+    ViewData["Title"] = "Details";
+}
+
+@section Style{
+    <link rel="stylesheet" href="~/css/Card.css" />
+}
+
+<div class="card">
+  <img src="https://via.placeholder.com/300x200.png?text=Student+Image" alt="Student Image">
+  <h3>@Model.Name</h3>
+  <p>Class of Student @Model.ClassId</p>
+  <div class="details">
+    <label>Date of Birth:</label>
+        <span>@Model.DateOfBirth</span>
+  </div>
+  <div class="details">
+    <label>Gender:</label>
+    <span>@Model.Gender</span>
+  </div>
+</div>
+

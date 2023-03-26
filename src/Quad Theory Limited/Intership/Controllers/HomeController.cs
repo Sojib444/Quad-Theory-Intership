@@ -16,9 +16,13 @@ namespace Intership.Controllers
 			this.lifetimeScope = lifetimeScope;
 		}
 
-		public IActionResult Index()
+		public async Task<IActionResult> Index()
 		{
-			return View();
+            var model = lifetimeScope.Resolve<StudentTable>();
+
+            var items = await model.GetAll();
+
+			return View(items);
 		}
 
 		[HttpGet]
@@ -38,10 +42,49 @@ namespace Intership.Controllers
 
 				await studentTable.AddStudent(studentTable);
 			}
-			return View();
+			return RedirectToAction("Index");
 		}
 
-		public IActionResult Privacy()
+        [HttpGet]
+        public async Task<IActionResult> UpdateStudent(Guid Id)
+        {
+            var model = lifetimeScope.Resolve<StudentTable>();
+
+			var item = await model.GetStudent(Id);
+
+            return View(item);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateStudent(StudentTable studentTable)
+        {
+            if (ModelState.IsValid)
+            {
+                studentTable.ResolveDependency(lifetimeScope);
+
+                await studentTable.Update(studentTable);
+            }
+            return RedirectToAction("Index");
+        }
+		public async Task<IActionResult> Delete(Guid Id)
+		{
+			var model = lifetimeScope.Resolve<StudentTable>();
+
+			await model.Delete(Id);
+
+			return RedirectToAction("Index");
+		}
+
+        public async Task<IActionResult> Details(Guid Id)
+        {
+            var model = lifetimeScope.Resolve<StudentTable>();
+
+            var item = await model.GetStudent(Id);
+
+            return View(item);
+        }
+
+        public IActionResult Privacy()
 		{
 			return View();
 		}

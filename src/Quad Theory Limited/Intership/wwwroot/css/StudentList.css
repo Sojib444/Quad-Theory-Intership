@@ -1,0 +1,52 @@
+﻿table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.anchor {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+    .anchor:hover {
+        background-color:darkgray;
+    }
+
+
+.header{
+    text-align:center;
+    align-items:center;
+    font-weight:bold;
+    font-size:30px;
+
+}
+
+p{
+    margin-top:20px;
+    font-size:20px;
+    font-family:'Imprint MT Shadow';
+}

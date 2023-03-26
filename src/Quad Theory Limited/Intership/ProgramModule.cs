@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Internship.Infrastructure.DTO;
 using Intership.Models;
 
 namespace Intership
@@ -9,8 +10,10 @@ namespace Intership
 		{
 			builder.RegisterType<StudentTable>()
 				.AsSelf();
-				
-			base.Load(builder);
+            builder.RegisterType<DStudentTable>()
+                .AsSelf();
+
+            base.Load(builder);
 		}
 	}
 }
