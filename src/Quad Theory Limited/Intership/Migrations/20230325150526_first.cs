@@ -52,10 +52,10 @@ namespace Intership.Migrations
                 name: "IX_studentTables_ClassIdID",
                 table: "studentTables",
                 column: "ClassIdID");
-        }
+		}
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
+		/// <inheritdoc />
+		protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "studentTables");

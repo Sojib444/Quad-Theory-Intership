@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //connectionString
-var connectionString = builder.Configuration.GetConnectionString("ConnectionString");
+var connectionString = builder.Configuration.GetConnectionString("connectionstring");
 
 //AsseblyName
 var assemblyName = Assembly.GetExecutingAssembly().FullName;
@@ -27,6 +27,10 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 //Set DBContext
 builder.Services.AddDbContext<ApplicationDbContext>(option => 
 option.UseSqlServer(connectionString, e => e.MigrationsAssembly(assemblyName)));
+
+//setup Automapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 
 var app = builder.Build();
 
