@@ -19,24 +19,50 @@ namespace Internship.Infrastructure.Repository
 			await _dbSet.AddAsync(entity);
 		}
 
-		public Task Delete(Guid Id)
+		public async Task Delete(Guid Id)
 		{
-			throw new NotImplementedException();
+			var item = await _dbSet.FindAsync(Id);
+
+			if(item != null)
+			{
+				_dbSet.Remove(item);
+			}
 		}
 
-		public T Get(Guid Id)
+		public async Task<T> Get(Guid Id)
 		{
-			throw new NotImplementedException();
+            var item = await _dbSet.FindAsync(Id);
+
+            if (item != null)
+            {
+                return item;
+            }
+
+            return null;
+        }
+
+		public async Task<List<T>> GetAll()
+		{
+			var items=await _dbSet.ToListAsync();
+
+			if(items !=null)
+			{
+				return items;
+			}
+
+			return null;
 		}
 
-		public T GetAll(T entity)
+		public async Task<T> Update(Guid Id)
 		{
-			throw new NotImplementedException();
-		}
+			var item = await _dbSet.FindAsync(Id);
 
-		public T Update(Guid Id)
-		{
-			throw new NotImplementedException();
+			if(item != null)
+			{
+				return item;
+			}
+
+			return null;
 		}
 	}
 }

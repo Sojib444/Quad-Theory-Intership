@@ -6,7 +6,8 @@ namespace Internship.Infrastructure.Service
 	{
 		Task AddStudent(DStudentTable dStudent);
 		Task<DStudentTable> GetStudent(Guid Id);
-		Task UpdateStudent(Guid Id);
+		Task<List<DStudentTable>> GetAllStudent();
+        Task UpdateStudent(DStudentTable stuedent);
 		Task DeleteStudent(Guid Id);
 	}
 }
